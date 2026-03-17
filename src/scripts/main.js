@@ -6,7 +6,7 @@ const parsePopulation = (str) => {
     return NaN;
   }
 
-  const num = Number(str.replace(',', '').trim());
+  const num = Number(str.replaceAll(',', '').trim());
 
   return !Number.isNaN(num) ? num : NaN;
 };
@@ -16,7 +16,7 @@ const population = populationNodes.map((node) => {
 });
 
 const totalPopulation = population.reduce((acc, n) => acc + n, 0);
-const averagePopulation = totalPopulation.length
+const averagePopulation = population.length
   ? Math.round(totalPopulation / population.length)
   : NaN;
 
@@ -24,9 +24,9 @@ const average = document.querySelector('.average-population');
 const total = document.querySelector('.total-population');
 
 if (average) {
-  average.textContent = averagePopulation;
+  average.textContent = averagePopulation.toLocaleString();
 }
 
 if (total) {
-  total.textContent = totalPopulation;
+  total.textContent = totalPopulation.toLocaleString();
 }
